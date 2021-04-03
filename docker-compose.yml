@@ -1,0 +1,25 @@
+version: "3.8"
+services:
+  apione:
+    build:
+      context: ./ApiOne/
+    ports:
+      - 8080:80
+    networks:
+      - api-network
+    hostname: apione
+  apitwo:
+    build:
+      context: ./ApiTwo/
+    environment:
+      - ServiceSettings:ApiOneHost=http://apione
+    ports:
+      - 8081:80
+    networks: 
+      - api-network
+    depends_on:
+      - apione
+    hostname: apitwo
+networks:
+  api-network:
+    driver: bridge
