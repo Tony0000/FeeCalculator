@@ -23,7 +23,7 @@ namespace Api.Common
             {
                 NumberDecimalSeparator = "."
             };
-            var interestRate = await _httpClient.GetStringAsync(_settings.ApiOneHost+"/taxaJuros");
+            var interestRate = await _httpClient.GetStringAsync(_settings.ApiOneHost+ ApiRoutes.ApiOne.TaxaJuros);
             
             return Convert.ToDouble(interestRate, provider);
         }

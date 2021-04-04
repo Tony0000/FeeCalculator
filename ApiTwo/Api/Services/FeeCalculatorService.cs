@@ -26,7 +26,7 @@ namespace Api.Services
         public async Task<string> GetGithubUrl()
         {
             return await Task
-                .FromResult("https://github.com/Tony0000/FeeCalculator");
+                .FromResult(StaticUrls.GithubRepository);
         }
     }
 }

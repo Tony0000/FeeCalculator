@@ -6,7 +6,7 @@ using FluentAssertions;
 using Moq;
 using NUnit.Framework;
 
-namespace ApiTest.UnitTest
+namespace ApiTest.Services
 {
     [TestFixture]
     public class FeeCalculatorServiceTest
@@ -38,13 +38,13 @@ namespace ApiTest.UnitTest
         }
         
         [Test]
-        public async Task ShowMeTheCode_ShouldReturnGithubUrl_WhenReached()
+        public async Task GetGithubUrl_ShouldReturnCorrectUrl_WhenCalled()
         {
             // act
             var result = await _sut.GetGithubUrl();
             
             // assert
-            result.Should().BeEquivalentTo("https://github.com/Tony0000/FeeCalculator");
+            result.Should().BeEquivalentTo(StaticUrls.GithubRepository);
         }
     }
 }
