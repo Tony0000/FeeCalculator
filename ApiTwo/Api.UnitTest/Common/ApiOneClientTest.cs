@@ -22,8 +22,6 @@ namespace ApiTest.Common
             var moqOptions = factory.Create<IOptions<ServiceSettings>>();
             moqOptions.Setup(x => x.Value).Returns(new ServiceSettings {ApiOneHost = BaseUrl});
 
-            var Url = BaseUrl + ApiRoutes.ApiOne.TaxaJuros;
-
             var moqClient = new HttpClient(new HttpMessageHandlerStub());
             _sut = new ApiOneClient(moqClient, moqOptions.Object);
         }
