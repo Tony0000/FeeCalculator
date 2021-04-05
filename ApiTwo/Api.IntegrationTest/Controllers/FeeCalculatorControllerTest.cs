@@ -42,5 +42,21 @@ namespace Api.IntegrationTest.Controllers
             // assert
             result.StatusCode.Should().Be(StatusCodes.Status400BadRequest);
         }
+        
+        [Test]
+        public async Task CalculateFee_ShouldReturnBadRequest_WhenFieldValuesAreValid()
+        {
+            // arrange
+            var queryParams = "/?initialValue=100&months=5";
+            
+            // act
+            var result = await TestClient.GetAsync(ApiRoutes.FeeCalculator.CalcFee + queryParams);
+
+            // assert
+            result.EnsureSuccessStatusCode();
+            result.StatusCode.Should().Be(StatusCodes.Status200OK);
+            var content = await result.Content.ReadAsStringAsync();
+            content.Should().Be("\"105,10\"");
+        }
     }
 }
